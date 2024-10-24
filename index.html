@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Candle</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
+</head>
+<body>
+    <script>
+        let mic;
+        let candleHeight = 100;
+
+        function setup() {
+            createCanvas(400, 400);
+            mic = new p5.AudioIn();
+            mic.start();
+        }
+
+        function draw() {
+            background(200);
+            fill(255, 204, 0);
+            rect(180, height - candleHeight, 40, candleHeight);
+            let vol = mic.getLevel();
+            candleHeight = map(vol, 0, 1, 10, 200);
+        }
+    </script>
+</body>
+</html>
